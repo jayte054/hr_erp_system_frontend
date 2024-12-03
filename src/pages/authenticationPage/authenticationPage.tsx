@@ -80,7 +80,10 @@ export const AuthenticationPage = () => {
                 role: employee.user.role,
                 token: employee.token,
             }
+            console.log(employeeData)
             updateEmployee(employeeData)
+            navigate('/employeePage')
+            console.log('yes')
         }catch (error) {
             console.log(error)
         }

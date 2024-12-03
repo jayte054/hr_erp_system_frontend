@@ -7,7 +7,7 @@ interface EmployeeContextProps {
 export const EmployeeAuthContext = createContext<any>(null)
 
 export const EmployeeProvider: React.FC<EmployeeContextProps> = ({children}: EmployeeContextProps) => {
-    const [Employee, setEmployee] = useState<EmployeeAuthContextInterface>({
+    const [employee, setEmployee] = useState<EmployeeAuthContextInterface>({
         id: "",
         name: "",
         email: "",
@@ -29,6 +29,6 @@ export const EmployeeProvider: React.FC<EmployeeContextProps> = ({children}: Emp
     // const contextValue = useMemo(() => ({ Employee, updateEmployee }), [Employee]);
 
     return (
-        <EmployeeAuthContext.Provider value={{Employee, updateEmployee}}>{children}</EmployeeAuthContext.Provider>
+        <EmployeeAuthContext.Provider value={{employee, updateEmployee}}>{children}</EmployeeAuthContext.Provider>
     )
 }
