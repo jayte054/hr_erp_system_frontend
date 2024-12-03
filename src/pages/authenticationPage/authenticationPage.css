@@ -1,0 +1,35 @@
+.authPage{
+    display: flex;
+    justify-content: space-between;
+}
+
+.authPage-signup,
+.authPage-signin {
+    border: 1px solid grey;
+    margin: 1rem;
+    padding: 1rem;
+    height: auto;
+}
+
+.signin-input {
+    display: flex;
+    flex-direction: column;
+    margin: 2rem;
+}
+
+.signin-input input {
+    padding: .5rem;
+}
+
+.signin-input span {
+    padding: .5rem;
+}
+
+.signup-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+
+.signup-buttons span{
+    margin: 1rem
+}
