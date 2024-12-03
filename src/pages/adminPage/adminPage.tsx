@@ -5,10 +5,12 @@ import { AuthenticationService } from "../../services/authenticationService"
 import { toastify } from "../../components/utils"
 import { CustomButton } from "../../components/buttonComponent"
 import { EmployeeTable } from "../../components/employeeTableComponent"
+import { EmployeeStatsComponent } from "../../components/employeeStatsComponent"
 
 export const AdminPage = () => {
     const [employeeform, setEmployeeForm] = useState(false)
     const [employeeTable, setEmployeeTable] = useState(false)
+    const [employeeStatsTable, setEmployeeStatsTable] = useState(false)
     const [name, setName] = useState<string>("")
     const [email, setEmail] = useState<string>("")
     const [password, setPassword] = useState<string>("")
@@ -45,7 +47,8 @@ export const AdminPage = () => {
             <h3> Welcome {admin.name}</h3>
             <button onClick={() => {
                 toggleForm(setEmployeeForm)
-                toggleForm(setEmployeeTable)
+                setEmployeeTable(false)
+                setEmployeeStatsTable(false)
             }
             }
             >
@@ -54,12 +57,19 @@ export const AdminPage = () => {
 
             <button onClick={() => {
                 toggleForm(setEmployeeTable)
-                toggleForm(setEmployeeForm)
+                setEmployeeForm(false)
+                setEmployeeStatsTable(false)
                 }}
             >
                 Fetch All Employees
             </button>
-            <button>Display Analytics</button>
+            <button onClick={() => {
+                toggleForm(setEmployeeStatsTable)
+                setEmployeeTable(false)
+                setEmployeeForm(false)
+            }}>
+                Display Analytics
+            </button>
             {employeeform && (
                         <div className="signin-input">
                         <span>Name</span>
@@ -118,6 +128,13 @@ export const AdminPage = () => {
                     {employeeTable && (
                         <div>
                             <EmployeeTable 
+                                admin={admin}
+                            />
+                        </div>
+                    )}
+                    {employeeStatsTable && (
+                        <div>
+                            <EmployeeStatsComponent 
                                 admin={admin}
                             />
                         </div>

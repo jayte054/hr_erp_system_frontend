@@ -46,5 +46,20 @@ export const profileService = {
         } catch (error) {
             console.log(error)
         }
+    },
+
+    fetchEmployeeStats: async (accessToken: string) => {
+        try {
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            }
+            const employeeStats = await axios.get(`${Base_Url}/api/profile/admin/fetchEmployeeStata`, config)
+            console.log(employeeStats.data)
+            return employeeStats.data;
+        } catch (error) {
+            console.log(error)
+        }
     }
 }
