@@ -7,12 +7,12 @@
     display: flex;
     padding: 1rem;
     align-items: center;
-    justify-content: space-between
+    justify-content: space-between;
 }
 
 .employeePage-button {
     display: flex;
-    justify-content: space-between
+    justify-content: space-evenly
 }
 
 .employeePage-button span{
@@ -23,4 +23,11 @@
     margin: 1rem;
     padding:1rem;
     border: 1px solid grey
+}
+
+.change-password button{
+    margin-top: 1rem;
+}
+.change-password input {
+    height: 3rem;
 }

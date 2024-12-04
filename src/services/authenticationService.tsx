@@ -58,5 +58,24 @@ export const AuthenticationService = {
         }catch (error) {
             console.log(error)
         }
+    },
+
+    changePassword: async (passwordData: {
+        currentPassword: string,
+        newPassword: string,
+        employeeId: string,
+    }) => {
+        try{
+            const changePassword = await axios.patch(`${Base_Url}/api/user/changePassword/${passwordData.employeeId}`, {
+                currentPassword: passwordData.currentPassword,
+                newPassword: passwordData.newPassword
+            } )
+            return changePassword.data
+        } catch(error) {
+            console.log(error)
+        }
+        
+
+
     }
 }

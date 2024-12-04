@@ -8,14 +8,19 @@ import "./employeePage.css"
 import { FaUpload } from "react-icons/fa";
 import { toastify } from "../../components/utils";
 import { useNavigate } from "react-router-dom";
+import { AuthenticationService } from "../../services/authenticationService";
 
 export const EmployeePage = () => {
     const [employeeProfile, setEmployeeProfile] = useState(false)
     const [employeeProfileForm, setEmployeeProfileForm] = useState(false)
+    const [changePasswordPage, setChangePasswordPage] = useState(false)
     const [employeeData, setEmployeeData] = useState<EmployeeInterface[]>([])
     const [employeeDataForm, setEmployeeDataForm] = useState<EmployeeInterface[]>([])
+    const [oldPassword, setOldPassword] = useState<string>('')
+    const [newPassword, setNewPassword] = useState<string>('')
     const {employee} = useContext(EmployeeAuthContext)
     const {fetchEmployeeById, updateEmployeeDetail} = profileService
+    const {changePassword} = AuthenticationService
         
     const toggleForm = (setState: React.Dispatch<React.SetStateAction<boolean>>) => {
         setState(prev => !prev)
@@ -170,10 +175,26 @@ export const EmployeePage = () => {
 
     const navigate = useNavigate()
 
+    const handleChangePassword = async () => {
+      try {
+        const passwordData = {
+          currentPassword: oldPassword, 
+          newPassword, 
+          employeeId: employee.id
+        }
+        const change = await changePassword(passwordData)
+        toastify.pchange('password changed successfully')
+        return change.data;
+      } catch (error) {
+        console.log(error)
+      }
+    }
+
     return (
         <div className='employee-page-container'>
           <div className='employee-signout'>
             <h3>Welcome {employee.name}</h3>
+            
             <span>
               <button onClick={
                 () => navigate("/authentication")
@@ -190,8 +211,19 @@ export const EmployeePage = () => {
                 onClick={() => {
                     toggleForm(setEmployeeProfile)
                     setEmployeeProfileForm(false)
+                    setChangePasswordPage(false)
                 }}
             />
+            </span>
+            <span>
+              <CustomButton 
+                label= 'Change Password'
+                onClick= {() => {
+                  toggleForm(setChangePasswordPage)
+                  setEmployeeProfileForm(false)
+                  setEmployeeProfile(false)
+                }}
+              />
             </span>
             <span>
             <CustomButton 
@@ -199,6 +231,7 @@ export const EmployeePage = () => {
                 onClick={() => {
                     toggleForm(setEmployeeProfileForm)
                     setEmployeeProfile(false)
+                    setChangePasswordPage(false)
                 }}
             />
             </span>
@@ -217,6 +250,27 @@ export const EmployeePage = () => {
                     />
                     </>
                     )}
+                </div>
+               )}
+               {changePasswordPage && (
+                <div className='change-password'>
+                  <p>Old Password</p>
+                  <input 
+                    type='text'
+                    name='oldPassword'
+                    value={oldPassword}
+                    onChange={(e) => setOldPassword(e.target.value)}
+                    placeholder="old password"
+                  />
+                  <p>New Password</p>
+                  <input 
+                    type='text'
+                    name='newPassword'
+                    value={newPassword}
+                    onChange={(e) => setNewPassword(e.target.value)}
+                    placeholder="old password"
+                  /><br />
+                  <button type='submit' onClick={handleChangePassword}>Change Password</button>
                 </div>
                )}
                {employeeProfileForm && (
