@@ -1,4 +1,4 @@
-export const CustomButton: React.FC<any> = ({onClick, label, ...props}) => {
+export const CustomButton: React.FC<any> = ({onClick, label,}) => {
 
     return (
         <div>

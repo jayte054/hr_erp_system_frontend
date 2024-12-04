@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext, useState } from "react";
 import { AdminAuthContextInterface } from "../../types/types";
 
 interface AdminContextProps {
@@ -26,7 +26,6 @@ export const AdminProvider: React.FC<AdminContextProps> = ({children}: AdminCont
         }))
     }
 
-    // const contextValue = useMemo(() => ({ admin, updateAdmin }), [admin]);
 
     return (
         <AdminAuthContext.Provider value={{admin, updateAdmin}}>{children}</AdminAuthContext.Provider>

@@ -1,4 +1,4 @@
-import { createContext, useMemo, useState } from "react";
+import { createContext,  useState } from "react";
 import { EmployeeAuthContextInterface } from "../../types/types";
 
 interface EmployeeContextProps {
@@ -26,7 +26,6 @@ export const EmployeeProvider: React.FC<EmployeeContextProps> = ({children}: Emp
         }))
     }
 
-    // const contextValue = useMemo(() => ({ Employee, updateEmployee }), [Employee]);
 
     return (
         <EmployeeAuthContext.Provider value={{employee, updateEmployee}}>{children}</EmployeeAuthContext.Provider>

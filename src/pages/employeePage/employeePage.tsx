@@ -5,7 +5,8 @@ import { CustomButton } from "../../components/buttonComponent"
 import { EmployeeInterface, UpdateEmployeeData } from "../../types/types"
 import { profileService } from "../../services/profileService"
 import "./employeePage.css"
-import { FaTrash, FaUpload } from "react-icons/fa";
+import { FaUpload } from "react-icons/fa";
+import { toastify } from "../../components/utils";
 
 export const EmployeePage = () => {
     const [employeeProfile, setEmployeeProfile] = useState(false)
@@ -25,6 +26,7 @@ export const EmployeePage = () => {
             console.log(_employee)
             employeeProfile.push(_employee)
             setEmployeeData(() => employeeProfile)
+            setEmployeeDataForm(() => employeeProfile)
             setEmployeeProfile(true)
         }
         profile()
@@ -78,7 +80,8 @@ export const EmployeePage = () => {
         }
         try {
             const employeeUpdate = await updateEmployeeDetail(employee.token, row._id, formData)
-            console.log(employeeUpdate)
+            toastify.update('account updated successfully')
+
             return employeeUpdate
         } catch (error) {
             console.log(error)

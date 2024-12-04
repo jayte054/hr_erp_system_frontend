@@ -3,14 +3,13 @@ import "./authenticationPage.css"
 import { CustomButton } from "../../components/buttonComponent"
 import { AuthenticationService } from "../../services/authenticationService"
 import { toastify } from "../../components/utils"
-import { AdminSignup, VerificationData } from "../../types/types"
+import {  VerificationData } from "../../types/types"
 import { AdminAuthContext } from "../../context/authenticationContext/adminContext"
 import { EmployeeAuthContext } from "../../context/authenticationContext/employeeContext"
 import { useNavigate } from "react-router-dom"
 
 export const AuthenticationPage = () => {
     const [adminform, setAdminForm] = useState(false)
-    const [employeeform, setEmployeeForm] = useState(false)
     const [adminsigninform, setAdminSigninForm] = useState(false)
     const [employeeSigninform, setEmployeeSigninForm] = useState(false)
     const [name, setName] = useState<string>("")
@@ -20,8 +19,8 @@ export const AuthenticationPage = () => {
     const [password, setPassword] = useState<string>("")
     const [department, setDepartment] = useState<string>("")
     const [salary, setSalary] = useState<string>("")
-    const {adminSignup, adminSignin, employeeSignup, employeeSignin} = AuthenticationService
-    const {admin, updateAdmin} = useContext(AdminAuthContext)
+    const {adminSignup, adminSignin, employeeSignin} = AuthenticationService
+    const { updateAdmin} = useContext(AdminAuthContext)
     const { updateEmployee} = useContext(EmployeeAuthContext)
     const navigate = useNavigate()
 
@@ -63,6 +62,7 @@ export const AuthenticationPage = () => {
             }
             updateAdmin(adminData)
             navigate("/adminPage")
+            toastify.siginSuccessful('successfully signed in')
         }catch (error) {
             console.log(error)
         }
@@ -72,7 +72,7 @@ export const AuthenticationPage = () => {
         const signinData = {email: _email, password: _password}
         try {
             const employee: VerificationData = await employeeSignin(signinData)
-            console.log(employee)
+            
             const employeeData = {
                 id: employee.user.id,
                 name: employee.user.name,
@@ -83,7 +83,8 @@ export const AuthenticationPage = () => {
             console.log(employeeData)
             updateEmployee(employeeData)
             navigate('/employeePage')
-            console.log('yes')
+            toastify.siginSuccessful('successfully signed in')
+
         }catch (error) {
             console.log(error)
         }
@@ -99,8 +100,6 @@ export const AuthenticationPage = () => {
                         label="Admin SignUp"
                         onClick={() => {
                             toggleForm(setAdminForm)
-                            toggleForm(setEmployeeForm)
-
                         }}
                     />
                 {adminform && (

@@ -5,6 +5,7 @@ import { profileService } from "../services/profileService";
 import { AdminAuthContextInterface, EmployeeInterface, UpdateEmployeeData } from "../types/types";
 import { useEffect, useState } from "react";
 import { FaTrash, FaUpload } from "react-icons/fa";
+import { toastify } from "./utils";
 
 interface EmployeeProp {
   admin: AdminAuthContextInterface;
@@ -55,6 +56,7 @@ export const EmployeeTable = ({ admin }: EmployeeProp) => {
     try {
         const employeeUpdate = await updateEmployeeDetail(accessToken, row._id, formData)
         console.log(employeeUpdate)
+        toastify.update('employee data updated successfully')
         return employeeUpdate
     } catch (error) {
         console.log(error)
@@ -64,6 +66,7 @@ export const EmployeeTable = ({ admin }: EmployeeProp) => {
   const handleDelete = async(id: string) => {
     try {
         await deleteEmployeeDetail(accessToken, id)
+        toastify.delete('employee deleted successfully')
     } catch (error) {
         console.log(error)
     }
