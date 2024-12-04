@@ -1,0 +1,19 @@
+.employee-page-container{
+    background-color: #6fbbb1;
+    padding-bottom: 1rem
+}
+
+.employeePage-button {
+    display: flex;
+    justify-content: space-between
+}
+
+.employeePage-button span{
+    margin: 1rem
+}
+
+.employee-body{
+    margin: 1rem;
+    padding:1rem;
+    border: 1px solid grey
+}

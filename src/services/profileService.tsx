@@ -18,14 +18,14 @@ export const profileService = {
         }
     },
 
-    updateEmployeeDetail: async (accessToken: string, id: string, formData: UpdateEmployeeData) => {
+    updateEmployeeDetailAdmin: async (accessToken: string, id: string, formData: UpdateEmployeeData) => {
         try{
             const config = {
                 headers: {
                     "Authorization": `Bearer ${accessToken}`
                 }
             }
-            const updateEmployee = await axios.patch(`${Base_Url}/api/profile/employee/updateEmployeeProfile/${id}`, formData , config)
+            const updateEmployee = await axios.patch(`${Base_Url}/api/profile/admin/updateEmployeeProfile/${id}`, formData , config)
             console.log(updateEmployee.data)
             return updateEmployee.data;
         } catch (error) {
@@ -77,5 +77,21 @@ export const profileService = {
         } catch (error) {
             console.log(error)
         }
-    }
+    },
+
+    updateEmployeeDetail: async (accessToken: string, id: string, formData: UpdateEmployeeData) => {
+        try{
+            const config = {
+                headers: {
+                    "Authorization": `Bearer ${accessToken}`
+                }
+            }
+            console.log(accessToken)
+            const updateEmployee = await axios.patch(`${Base_Url}/api/profile/employee/updateEmployeeProfile/${id}`, formData , config)
+            console.log(updateEmployee.data)
+            return updateEmployee.data;
+        } catch (error) {
+            console.log(error)
+        }
+    },
 }
