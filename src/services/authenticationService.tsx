@@ -3,7 +3,7 @@ import { EmployeeSignup, SignInData } from "../types/types";
 import { toastify } from '../components/utils';
 
 // export const Base_Url = "http://localhost:3001"
-export const Base_Url = "https://hr-erp-system-backend.onrender.com/"
+export const Base_Url = "https://hr-erp-system-backend-1.onrender.com"
 export const AuthenticationService = {
     adminSignup: async (formData:{
         name: string;
