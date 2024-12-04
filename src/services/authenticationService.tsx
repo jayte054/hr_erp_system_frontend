@@ -1,5 +1,5 @@
 import axios from 'axios';
-import { AdminSignup, EmployeeSignup, SignInData } from "../types/types";
+import { EmployeeSignup, SignInData } from "../types/types";
 import { toastify } from '../components/utils';
 
 // export const Base_Url = "http://localhost:3001"
