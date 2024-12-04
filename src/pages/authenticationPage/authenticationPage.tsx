@@ -189,18 +189,18 @@ export const AuthenticationPage = () => {
                              <span>Email</span>
                             <input
                                 type="text"
-                                name="email"
-                                value={email}
-                                onChange={(e) => setEmail(e.target.value)}
+                                name="_email"
+                                value={_email}
+                                onChange={(e) => _setEmail(e.target.value)}
                                 placeholder="Email"
                                 required
                             />
                              <span>Password</span>
                             <input
                                 type="password"
-                                name="password"
-                                value={password}
-                                onChange={(e) => setPassword(e.target.value)}
+                                name="_password"
+                                value={_password}
+                                onChange={(e) => _setPassword(e.target.value)}
                                 placeholder="Password"
                                 required
                             />
