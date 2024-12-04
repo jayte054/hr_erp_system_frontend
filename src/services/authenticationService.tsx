@@ -2,8 +2,8 @@ import axios from 'axios';
 import { AdminSignup, EmployeeSignup, SignInData } from "../types/types";
 import { toastify } from '../components/utils';
 
-// export const Base_Url = "http://localhost:3001"
-export const Base_Url = "https://hr-erp-system-backend.onrender.com"
+export const Base_Url = "http://localhost:3001"
+// export const Base_Url = "https://hr-erp-system-backend.onrender.com"
 export const AuthenticationService = {
     adminSignup: async (formData: AdminSignup) => {
         try {
@@ -26,11 +26,13 @@ export const AuthenticationService = {
         }
     },
     employeeSignup: async (accessToken: string, formData: EmployeeSignup) => {
+        // fetch()
         try {
             const config = {
                 headers: {
                     "Authorization": `Bearer ${accessToken}`
                 }
+
             }
             console.log(formData)
             const signup = await axios.post(`${Base_Url}/api/user/signup`, formData, config)
@@ -43,8 +45,17 @@ export const AuthenticationService = {
     employeeSignin: async ( signinData: SignInData) => {
         try {
             console.log(signinData)
-            const signin = await axios.post(`${Base_Url}/api/user/signin`, signinData)
-            return signin.data
+            // const signin = await axios.post(`${Base_Url}/api/user/signin`, signinData)
+            const response = await fetch(`${Base_Url}/api/user/signin`, {
+                method: 'POST', // HTTP method
+                headers: {
+                  'Content-Type': 'application/json', // Specify JSON format
+                },
+                body: JSON.stringify(signinData), // Convert data to JSON string
+              });
+              const data = await response.json();
+              return data
+            // return signin.data
         }catch (error) {
             console.log(error)
         }
