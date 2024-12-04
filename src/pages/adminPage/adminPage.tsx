@@ -6,6 +6,7 @@ import { toastify } from "../../components/utils"
 import { CustomButton } from "../../components/buttonComponent"
 import { EmployeeTable } from "../../components/employeeTableComponent"
 import { EmployeeStatsComponent } from "../../components/employeeStatsComponent"
+import { useNavigate } from "react-router-dom"
 
 export const AdminPage = () => {
     const [employeeform, setEmployeeForm] = useState(false)
@@ -42,9 +43,20 @@ export const AdminPage = () => {
         }
     }
 
+    const navigate = useNavigate()
+
     return (
         <div className="admin-dash-container">
-            <h3> Welcome {admin.name}</h3>
+            <div className='employee-signout'>
+            <h3>Welcome {admin.name}</h3>
+            <span>
+              <button onClick={
+                () => navigate("/authentication")
+                }>
+                  Signout
+              </button>
+            </span>
+          </div>
             <button onClick={() => {
                 toggleForm(setEmployeeForm)
                 setEmployeeTable(false)

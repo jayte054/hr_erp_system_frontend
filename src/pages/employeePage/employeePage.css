@@ -3,6 +3,13 @@
     padding-bottom: 1rem
 }
 
+.employee-signout{
+    display: flex;
+    padding: 1rem;
+    align-items: center;
+    justify-content: space-between
+}
+
 .employeePage-button {
     display: flex;
     justify-content: space-between

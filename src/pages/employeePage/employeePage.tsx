@@ -7,6 +7,7 @@ import { profileService } from "../../services/profileService"
 import "./employeePage.css"
 import { FaUpload } from "react-icons/fa";
 import { toastify } from "../../components/utils";
+import { useNavigate } from "react-router-dom";
 
 export const EmployeePage = () => {
     const [employeeProfile, setEmployeeProfile] = useState(false)
@@ -167,10 +168,21 @@ export const EmployeePage = () => {
             },
     ]
 
+    const navigate = useNavigate()
 
     return (
         <div className='employee-page-container'>
+          <div className='employee-signout'>
             <h3>Welcome {employee.name}</h3>
+            <span>
+              <button onClick={
+                () => navigate("/authentication")
+                }>
+                  Signout
+              </button>
+            </span>
+          </div>
+            
             <div className="employeePage-button">
             <span>
             <CustomButton 

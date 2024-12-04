@@ -1,6 +1,7 @@
 .authPage{
     display: flex;
     justify-content: space-between;
+    background-color: rgb(150, 179, 169);
 }
 
 .authPage-signup,
