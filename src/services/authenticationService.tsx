@@ -14,29 +14,30 @@ export const AuthenticationService = {
     }) => {
         console.log(formData)
         try {
-            // const adminSignup = await axios.post(`${Base_Url}/api/user/adminSignup`, formData)
+            const adminSignup = await axios.post(`${Base_Url}/api/user/adminSignup`, formData)
             // console.log(adminSignup.data)
-            const response = await fetch(`${Base_Url}/api/user/adminSignup`, {
-                method: 'POST',
-                // mode: 'no-cors',
-                headers: {
-                    'Content-Type': 'application/json', // Ensure JSON format is communicated
-                },
-                body: JSON.stringify(formData), // Serialize the form data
-            });
+            // const response = await fetch(`${Base_Url}/api/user/adminSignup`, {
+            //     method: 'POST',
+            //     // mode: 'no-cors',
+            //     headers: {
+            //         'Content-Type': 'application/json', // Ensure JSON format is communicated
+            //     },
+            //     body: JSON.stringify(formData), // Serialize the form data
+            // });
     
-            if (!response.ok) {
-                // Handle HTTP errors
-                throw new Error(`Error: ${response.status} ${response.statusText}`);
-            }
+            // if (!response.ok) {
+            //     // Handle HTTP errors
+            //     throw new Error(`Error: ${response.status} ${response.statusText}`);
+            // }
     
-            const data = await response.json(); // Parse JSON response
-            console.log(data); // Log response data for debugging
-            toastify.signupSuccessful('Admin signup successful');
-            return data;
+            // const data = await response.json(); // Parse JSON response
+            // console.log(data); // Log response data for debugging
+            // toastify.signupSuccessful('Admin signup successful');
+            // return data;
             //   return response
             //   const data = await response.json();
             //   return data;
+            return adminSignup.data
         } catch (error) {
             console.log(error)
             toastify.signupSuccessful('admin signup successful')
