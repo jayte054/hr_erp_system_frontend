@@ -47,7 +47,8 @@ export const AuthenticationService = {
             console.log(signinData)
             // const signin = await axios.post(`${Base_Url}/api/user/signin`, signinData)
             const response = await fetch(`${Base_Url}/api/user/signin`, {
-                method: 'POST', // HTTP method
+                method: 'POST', 
+                mode: 'no-cors',
                 headers: {
                   'Content-Type': 'application/json', // Specify JSON format
                 },
