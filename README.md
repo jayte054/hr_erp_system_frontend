@@ -35,3 +35,7 @@ export default {
 npm install
 
 npm run dev
+
+# communicating with the backend
+
+run the server locally, env variables provided in .envexample file
